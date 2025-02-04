@@ -1,0 +1,161 @@
+* {
+    background-color: #221f1d;
+    color: #d5d1cf;
+    font-family: "Roboto Mono", serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    gap: 20px;
+    padding: 20px;
+}
+
+.header {
+    grid-area: header;
+    text-align: right;
+    padding: 20px;
+    background: #333;
+    font-size: 1.8em;
+    color: #D4770C;
+}
+
+hr {
+    display: block;
+    border: 0;
+    border-top: 3px solid #D4770C;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: #2a2725;
+    font-size: 1.1em;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #D4770C;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.resume-btn {
+    background: #D4770C;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 1.1em;
+    border: none;
+}
+
+.content {
+    grid-area: content;
+    overflow-y: auto;
+    padding: 30px;
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+.skills-grid, .projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.skill, .project {
+    background: #444;
+    padding: 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    color: #D4770C;
+    text-align: center;
+    width: 80%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #D4770C;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #333;
+}
+
+ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+ul li::marker {
+    color: #D4770C;
+}
+
+strong {
+    font-weight: bold;
+    color: #D4770C;
+}
+
+em {
+    font-style: italic;
+}
+
+u {
+    text-decoration-color: #D4770C;
+}
+
+a {
+    text-decoration: none;
+    color: #D4770C;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    grid-area: footer;
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    font-size: 1.1em;
+    color: #D4770C;
+}
