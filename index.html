@@ -1,196 +1,160 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Randy Limon Portfolio
-        </title>
+        <title>Randy Limon Portfolio</title>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap" rel="stylesheet">
     </head>
-
-    <body bgcolor="#0" text="#ffffff">
-        <h1>Randy Limon</h1>
-        <hr>
-
-        <!-- Introduction section -->
-        <div title="Introduction">
-        <h2>Introduction</h2>
-
-            <p>
-                My name is <strong>Randy Limon</strong> and I am a student at
-                <strong>Northern Arizona University</strong> and currently I am
-                majoring in Software Engineering as well as minoring in 
-                Japanese. I do not have much of a professional 
-                background as I am in school full time, though, I have many 
-                interests thanks to my ADHD.<br>
-                <br>
-
-                <strong>A few exampes of such interests are:</strong>
+    <body>
+        <div class="grid-container">
+            <header class="header">
+                <h1>Randy Limon</h1>
+                <hr>
+            </header>
+            <nav class="sidebar">
                 <ul>
-                    <em>
+                    <li><a href="#summary">Summary</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="Randy_Limon_Resume 1-14-23.pdf" download>
+                    <button class="resume-btn">Download Resume</button>
+                </a>
+            </nav>
+            <main class="content">
+                <section id="summary">
+                    <h2><u>Introduction</u></h2>
+                    <p>
+                        My name is <strong>Randy Limon</strong> and I am a student at
+                        <strong>Northern Arizona University</strong> majoring in Software
+                        Engineering and minoring in Japanese. I do not have much of a
+                        professional background as I am in school full time, though, I have
+                        many interests thanks to my ADHD.<br><br>
+                        A few examples of such interests are:
+                    </p>
+                    <ul>
                         <li>Custom Computers</li>
                         <li>Custom Keyboards</li>
                         <li>Cars</li>
                         <li>Music</li>
                         <li>Coding</li>
-                    </em>
-                </ul>
-
-                The most professional business I am involved in is fronting for my meal band
-                and having to communicate with venues for gig opportunities. Though, this is
-                very casual compared to the professional bands and their official communications.
-            </p>
-        </div>
-
-        <!-- Skills section -->
-        <div title="Skills">
-            <h2>Skills</h2>
-
-            <p>
-                There are many skills that I aquired through the interests that I have gotten 
-                into. Many of these skills are related as the interests usually flow into one
-                another and help reinforce each other. Let's explore some of the skills I have 
-                aquired by going through a few of the interests listed earlier.
-            </p>
-
-            
-            <h3>Custom Keyboards</h3>
-
-            <ul>
-                <em>
-                    <li>Low Voltage Electronics</li>
-                    <li>Research</li>
-                    <li>Small Mechanical Assembly</li>
-                </em>
-            </ul>
-
-            <h3>Cars</h3>
-
-            <ul>
-                <em>
-                    <li>Large Mechanical Assembly</li>
-                    <li>Mechanical Thinking</li>
-                    <li>Tool Use</li>
-                </em>
-            </ul>
-
-            <h3>Coding</h3>
-
-            <ul>
-                <em>
-                    <li>Problem Solving</li>
-                    <li>Patience</li>
-                    <li>Typing Speed</li>
-                </em>
-            </ul>
-            
-            </div>
-            
-            <!--Projects section-->
-            <div title="Projects">
-            <h2>Projects</h2>
-
-            <p>
-                I have put much of my time into coding projects, many of which
-                have been assigned by various calsses I have taken, but I will
-                present those that I have taken on through personal interest. 
-            </p>
-
-            <ul>
-                <li>
-                    <h3>Text Based RPG - <em>Python</em></h3>
-
+                    </ul>
                     <p>
-                        This project was started when I was approaching an intermediate
-                        level in the language, but before I was introduced to the idea 
-                        of object oriented programing. This creared many obstacles in 
-                        the development including, but not limited to: <br>
-
-                        <ul>
-                            <em>
+                        The most professional business I am involved in is fronting for my
+                        <strong>metal band</strong> and having to communicate with venues for
+                        gig opportunities. Though, this is very casual compared to the
+                        professional bands and their official communications.
+                    </p>
+                </section>
+                <section id="education">
+                    <h2><u>Education and Experience</u></h2>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Institution</th>
+                            <th>Duration</th>
+                            <th>Other Details</th>
+                        </tr>
+                        <tr>
+                            <td>Education</td>
+                            <td>Northern Arizona University</td>
+                            <td>2 Years</td>
+                            <td>Software Engineering Major and Japanese Minor</td>
+                        </tr>
+                        <tr>
+                            <td>Work</td>
+                            <td>Various Employers</td>
+                            <td>2 Years</td>
+                            <td>Many blue-collar jobs and one stint in restaurant service</td>
+                        </tr>
+                    </table>
+                </section>
+                <section id="skills">
+                    <h2><u>Skills</u></h2>
+                    <div class="skills-grid">
+                        <div class="skill">
+                            <h3>Custom Keyboards</h3>
+                            <ul>
+                                <li>Low Voltage Electronics</li>
+                                <li>Research</li>
+                                <li>Small Mechanical Assembly</li>
+                            </ul>
+                        </div>
+                        <div class="skill">
+                            <h3>Cars</h3>
+                            <ul>
+                                <li>Large Mechanical Assembly</li>
+                                <li>Mechanical Thinking</li>
+                                <li>Tool Use</li>
+                            </ul>
+                        </div>
+                        <div class="skill">
+                            <h3>Coding</h3>
+                            <ul>
+                                <li>Problem Solving</li>
+                                <li>Patience</li>
+                                <li>Typing Speed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section id="projects">
+                    <h2><u>Projects</u></h2>
+                    <div class="projects-grid">
+                        <div class="project">
+                            <h3>Text Based RPG</h3>
+                            <p><em>Python</em></p>
+                            <img src="Screenshot 2025-01-27 202906.png" alt="Text Based RPG Screenshot">
+                            <p>
+                                This project was started when I was approaching an intermediate
+                                level in the language, but before I was introduced to the idea
+                                of object-oriented programming. This created many obstacles in
+                                the development including, but not limited to:
+                            </p>
+                            <ul>
                                 <li>Town Tracking</li>
                                 <li>Inventory Tracking</li>
                                 <li>Cell Tracking</li>
                                 <li>Player Tracking</li>
-                            </em>
-                        </ul>
-
-                        This was also before I was made aware of enumerations which 
-                        would have helped enormously with task selection.
-                    </p>
-                    <img src="Screenshot 2025-01-27 202906.png" alt="Text based
-                    RPG terminal window" width="750">
-                </li>
-                <li>
-                    <h3>Sorting Algorithm Visualizer - <em>Python</em></h3>
-
-                    <p>
-                        This project started as a comparison of different sorting
-                        algorithms purly from the console, but quickly evolved into the
-                        project it became. I spent many late nights staring at my screen
-                        as the implementation of the visual element through pygame was
-                        not easy when it came to the merge sort. This project suffered
-                        from the lack of object oriented programing.
-                    </p>
-                    <img src="Screenshot 2025-01-27 203033.png" alt="Sorting 
-                    algorithm visualizer" width="750">
-                </li>
-                <li>
-                    <h3>Vector Average/Sum - <em>C</em></h3>
-
-                    <p>
-                        I started this one with the goal of implementing the sum of 
-                        vectors and accidentally ended up with the averages before
-                        correcting and saving both versons. This project lead to me
-                        discovering the <strong>atan2</strong> function that is used
-                        a lot in 2d game development.
-                    </p>
-                    <img src="Screenshot 2025-01-27 203402.png" 
-                    alt="Vector sum terminal view" width="750">
-                </li>
-            </ul>
-        </div>
-
-        <!--Education and Experience section-->
-        <div title="Education and Experience">
-
-            <h2>Education and Experience</h2>
-
-            <table border="" width="750">
-                <tr>
-                    <th>Type</th>
-                    <th>Institution</th>
-                    <th>Duration</th>
-                    <th>Other Details</th>
-                </tr>
-                <tr>
-                    <td>Education</td>
-                    <td>Northern Arizona University</td>
-                    <td>2 Years</td>
-                    <td>
-                        Software Engineering Major and Japanese Minor
-                    </td>
-                </tr>
-                <tr>
-                    <td>Work</td>
-                    <td>Various Employers</td>
-                    <td>2 Years</td>
-                    <td>Many blue collar jobs and one stint in restraunt service</td>
-                </tr>
-            </table>
-
-        </div>
-
-        <hr>
-
-        <!--Contact Information section-->
-        <div title="Contact Informarion">
-            <h2>Contact Informarion</h2>
-
-            <p>
-                <small>
-                    Email: <a href="mailto:rll286@nau.edu" target="_blank"><em>rll286@nau.edu</em></a><br>
-                    <a href="Randy_Limon_Resume 1-14-23.pdf" download="">Old Resume</a>
-                </small>
-            </p>
+                            </ul>
+                        </div>
+                        <div class="project">
+                            <h3>Sorting Algorithm Visualizer</h3>
+                            <p><em>Python</em></p>
+                            <img src="Screenshot 2025-01-27 203033.png" alt="Sorting Algorithm Visualizer Screenshot">
+                            <p>
+                                This project started as a comparison of different sorting
+                                algorithms purely from the console, but quickly evolved into the
+                                project it became. I spent <strong>many late nights</strong>
+                                staring at my screen as the implementation of the visual element
+                                through Pygame was not easy when it came to merge sort.
+                            </p>
+                        </div>
+                        <div class="project">
+                            <h3>Vector Average/Sum</h3>
+                            <p><em>C</em></p>
+                            <img src="Screenshot 2025-01-27 203402.png" alt="Vector Average/Sum Screenshot">
+                            <p>
+                                I started this one with the goal of implementing the sum of
+                                vectors and accidentally ended up with the averages before
+                                correcting and saving both versions. This project led to me
+                                discovering the <strong>atan2</strong> function that is used
+                                frequently in 2D game development.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer id="contact">
+                <h2><u>Contact Information</u></h2>
+                <p>
+                    <a href="mailto:rll286@nau.edu"><em>rll286@nau.edu</em></a>
+                </p>
+            </footer>
         </div>
     </body>
 </html>
