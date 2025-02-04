@@ -17,7 +17,7 @@
     grid-template-rows: auto 1fr auto;
     height: 100vh;
     gap: 20px;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 .header {
