@@ -18,6 +18,10 @@ a:hover {
     text-decoration: underline;
 }
 
+h2 {
+    padding: 20px 0;
+}
+
 /* Accent Styling */
 strong {
     font-weight: bold;
@@ -111,7 +115,7 @@ hr {
 .content {
     grid-area: content;
     overflow-y: auto;
-    padding: 20px;
+    padding: 10px;
     line-height: 1.5;
 }
 
