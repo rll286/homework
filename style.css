@@ -152,6 +152,10 @@ body {
   ul li::marker {
     color: #D4770C;
   }
+  small {
+    text-align: center;
+    color: #D4770C;
+  }
   
   /* Footer */
   .footer-bg {
