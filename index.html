@@ -59,12 +59,20 @@
               <a class="nav-link" href="#projects">Projects</a>
             </li>
           </ul>
-          <a
-            id="resumeBtn"
-            href="Randy_Limon_Resume 1-14-23.pdf"download
-            class="btn resume-btn"
-            >Download Resume</a
-          >
+          <!-- Resume Download Button + Counter -->
+          <div>
+            <a
+              id="resumeBtn"
+              href="Randy_Limon_Resume 1-14-23.pdf"
+              download
+              class="btn resume-btn"
+              >Download Resume</a
+            >
+            <!-- Count Display -->
+            <p class="mt-2" style="text-align: center;">
+              Resume Downloads: <span id="downloadCountDisplay">0</span>
+            </p>
+          </div>
         </div>
       </div>
     </nav>
@@ -72,6 +80,7 @@
     <!-- Main Content -->
     <main class="container my-3">
       <small><p id="welcome"></p></small>
+      
       <!-- Introduction Section -->
       <section id="summary" class="mb-3">
         <h2 class="text-center mb-4 section-title"><u>Introduction</u></h2>
@@ -101,40 +110,21 @@
       <!-- Education and Experience Section -->
       <section id="education" class="mb-3">
         <h2 class="text-center mb-4 section-title"><u>Education and Experience</u></h2>
-        <div class="d-flex justify-content-center">
-          <table class="table table-striped table-bordered custom-table">
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Institution</th>
-                <th>Duration</th>
-                <th>Other Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Education</td>
-                <td>Northern Arizona University</td>
-                <td>2 Years</td>
-                <td>Software Engineering Major and Japanese Minor</td>
-              </tr>
-              <tr>
-                <td>Work</td>
-                <td>Various Employers</td>
-                <td>2 Years</td>
-                <td>Many blue-collar jobs and one stint in restaurant service</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        
+        <!-- Dynamically Created Tables -->
+        <h3 class="text-center">Education Table</h3>
+        <div id="educationTableContainer"></div>
+        
+        <h3 class="text-center mt-4">Experience Table</h3>
+        <div id="experienceTableContainer"></div>
       </section>
 
-      <!-- Skills Section using Bootstrap Cards -->
+      <!-- Skills Section -->
       <section id="skills" class="mb-3">
         <h2 class="text-center mb-4 section-title"><u>Skills</u></h2>
-        <!-- 3-column responsive grid of cards -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Skill Card 1 -->
+        
+        <!-- Existing skill examples -->
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
           <div class="col">
             <div class="card custom-card h-100">
               <div class="card-body">
@@ -148,7 +138,6 @@
               </div>
             </div>
           </div>
-          <!-- Skill Card 2 -->
           <div class="col">
             <div class="card custom-card h-100">
               <div class="card-body">
@@ -162,7 +151,6 @@
               </div>
             </div>
           </div>
-          <!-- Skill Card 3 -->
           <div class="col">
             <div class="card custom-card h-100">
               <div class="card-body">
@@ -177,85 +165,24 @@
             </div>
           </div>
         </div>
+
+        <!-- Dynamically Added Skills -->
+        <div class="mb-3">
+          <label for="skillInput" class="form-label">Add a new skill:</label>
+          <input type="text" id="skillInput" class="form-control" />
+          <button id="addSkillButton" class="btn resume-btn mt-2">Add Skill</button>
+        </div>
+
+        <!-- List of New Skills -->
+        <ul id="skillList"></ul>
       </section>
 
-      <!-- Projects Section using Bootstrap Cards -->
+      <!-- Projects Section -->
       <section id="projects" class="mb-3">
         <h2 class="text-center mb-4 section-title"><u>Projects</u></h2>
-        <!-- 3-column responsive grid of cards -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Project Card 1 -->
-          <div class="col">
-            <div class="card custom-card h-100">
-              <img
-                src="Screenshot 2025-01-27 202906.png"
-                class="card-img-top"
-                alt="Text Based RPG Screenshot"
-              />
-              <div class="card-body">
-                <h3 class="card-title">Text Based RPG</h3>
-                <p><em>Python</em></p>
-                <hr>
-                <p>
-                  This project was started when I was approaching an intermediate
-                  level in the language, but before I was introduced to
-                  <strong>object-oriented programming</strong>. This created many
-                  obstacles including:
-                </p>
-                <hr>
-                <ul class="list-unstyled">
-                  <li>Town Tracking</li>
-                  <li>Inventory Tracking</li>
-                  <li>Cell Tracking</li>
-                  <li>Player Tracking</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- Project Card 2 -->
-          <div class="col">
-            <div class="card custom-card h-100">
-              <img
-                src="Screenshot 2025-01-27 203033.png"
-                class="card-img-top"
-                alt="Sorting Algorithm Visualizer Screenshot"
-              />
-              <div class="card-body">
-                <h3 class="card-title">Sorting Algorithm Visualizer</h3>
-                <p><em>Python</em></p>
-                <hr>
-                <p>
-                  This project started as a comparison of different sorting
-                  algorithms purely from the console, but quickly evolved into the
-                  project it became. I spent
-                  <strong>many late nights</strong> refining the visual component
-                  through Pygame.
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- Project Card 3 -->
-          <div class="col">
-            <div class="card custom-card h-100">
-              <img
-                src="Screenshot 2025-01-27 203402.png"
-                class="card-img-top"
-                alt="Vector Average/Sum Screenshot"
-              />
-              <div class="card-body">
-                <h3 class="card-title">Vector Average/Sum</h3>
-                <p><em>C</em></p>
-                <hr>
-                <p>
-                  I started this project with the goal of implementing the sum of
-                  vectors but ended up computing averages as well – a journey that
-                  led me to discover the frequently used
-                  <strong>atan2</strong> function in 2D game development.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+        <!-- Dynamically Created Projects -->
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="projectsContainer"></div>
       </section>
     </main>
 
@@ -266,16 +193,16 @@
           <h2 class="h5 section-title"><u>Contact Information</u></h2>
           <p>
             <a href="mailto:rll286@nau.edu"><em>rll286@nau.edu</em></a>
-            <p id="project"></p>
           </p>
         </div>
       </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
+    <!-- Bootstrap JS Bundle -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     ></script>
-      <script src="./app.js"></script>
+    <!-- Custom JS -->
+    <script src="./app.js"></script>
   </body>
 </html>
