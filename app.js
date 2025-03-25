@@ -1,212 +1,237 @@
-// Resume Download Tracker
-let downloadCount = 0;
+$(document).ready(function () {
+  // Dynamic Skills
+  let skills = [];
 
-const resumeButton = document.getElementById("resumeBtn");
-const downloadDisplay = document.getElementById("downloadCountDisplay");
-
-resumeButton.addEventListener("click", () => {
-  // Increment the count each time the user clicks to download
-  downloadCount++;
-  // Update the display on the page
-  downloadDisplay.textContent = downloadCount;
-});
-
-// Skill Addition
-const addSkillButton = document.getElementById("addSkillButton");
-const skillList = document.getElementById("skillList");
-
-addSkillButton.addEventListener("click", () => {
-  const skillInput = document.getElementById("skillInput");
-  const newSkill = skillInput.value.trim();
-
-  if (newSkill !== "") {
-    // Create a new list item
-    const li = document.createElement("li");
-    li.textContent = newSkill;
-    // Add it to our <ul> for skills
-    skillList.appendChild(li);
-    // Clear the input
-    skillInput.value = "";
-  }
-});
-
-// Project Loop
-const projectsData = [
-  {
-    title: "Text Based RPG",
-    description:
-      "A console-based RPG featuring towns, inventory management, and more.",
-    deadline: "2025-12-31", // Future date => should show "Ongoing"
-  },
-  {
-    title: "Sorting Algorithm Visualizer",
-    description:
-      "Visual comparison of different sorting algorithms, built with Python & Pygame.",
-    deadline: "2025-05-10", // Future date => should show "Ongoing"
-  },
-  {
-    title: "Vector Average/Sum",
-    description:
-      "Project in C for summing and averaging vectors (discovering atan2).",
-    deadline: "2023-01-01", // Past date => should show "Completed"
-  },
-];
-
-// Insert project cards
-const projectsContainer = document.getElementById("projectsContainer");
-
-// Date comparison
-const currentDate = new Date();
-
-projectsData.forEach((project) => {
-  // Create Bootstrap card
-  const colDiv = document.createElement("div");
-  colDiv.classList.add("col");
-
-  const cardDiv = document.createElement("div");
-  cardDiv.classList.add("card", "custom-card", "h-100");
-
-  const cardBody = document.createElement("div");
-  cardBody.classList.add("card-body");
-
-  // Project title
-  const titleElement = document.createElement("h3");
-  titleElement.classList.add("card-title");
-  titleElement.textContent = project.title;
-
-  // Project description
-  const descElement = document.createElement("p");
-  descElement.textContent = project.description;
-
-  // Calculate status
-  const deadlineDate = new Date(project.deadline);
-  let statusText = "Completed";
-  if (deadlineDate > currentDate) {
-    statusText = "Ongoing";
-  }
-  const statusElement = document.createElement("p");
-  statusElement.textContent = `Status: ${statusText}`;
-
-  // Append everything
-  cardBody.appendChild(titleElement);
-  cardBody.appendChild(descElement);
-  cardBody.appendChild(statusElement);
-  cardDiv.appendChild(cardBody);
-  colDiv.appendChild(cardDiv);
-  projectsContainer.appendChild(colDiv);
-});
-
-// Dynamic Tables
-const educationData = [
-  {
-    degree: "Software Engineering Major",
-    institution: "Northern Arizona University",
-    start: "2023",
-    end: "2027",
-  },
-];
-
-const experienceData = [
-  {
-    role: "Restaurant Service",
-    company: "Various Employers",
-    start: "2020",
-    end: "2022",
-  },
-  {
-    role: "Metal Band Frontman",
-    company: "Local Gigs",
-    start: "2019",
-    end: "Present",
-  },
-];
-
-/**
- * Creates a dynamic table and appends it to a container.
- * @param {string} containerId - The ID of the div to place the table in.
- * @param {Object[]} data - The data to populate the table rows.
- * @param {string[]} headers - The table column headers.
- */
-function createTable(containerId, data, headers) {
-  const container = document.getElementById(containerId);
-
-  // Create the table
-  const table = document.createElement("table");
-  table.classList.add(
-    "table",
-    "table-striped",
-    "table-bordered",
-    "custom-table"
-  );
-
-  const thead = document.createElement("thead");
-  const headerRow = document.createElement("tr");
-
-  headers.forEach((header) => {
-    const th = document.createElement("th");
-    th.textContent = header;
-    headerRow.appendChild(th);
-  });
-
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
-
-  // Create the tbody
-  const tbody = document.createElement("tbody");
-  data.forEach((entry) => {
-    const row = document.createElement("tr");
-
-    // The headers array determines the order
-    headers.forEach((key) => {
-      const td = document.createElement("td");
-      // Convert the header text into a lowercase key
-      const lowerKey = key.toLowerCase();
-
-      switch (lowerKey) {
-        case "degree":
-          td.textContent = entry.degree;
-          break;
-        case "institution":
-          td.textContent = entry.institution;
-          break;
-        case "start":
-          td.textContent = entry.start;
-          break;
-        case "end":
-          td.textContent = entry.end;
-          break;
-        case "role":
-          td.textContent = entry.role;
-          break;
-        case "company":
-          td.textContent = entry.company;
-          break;
-        default:
-          td.textContent = "N/A";
-      }
-
-      row.appendChild(td);
+  function renderSkills() {
+    $("#skillList").empty();
+    skills.forEach((skill, index) => {
+      const listItem = $(`
+        <li class="mb-2" data-index="${index}">
+          <span class="skill-text">${skill}</span>
+          <button class="btn btn-sm btn-outline-light ms-2 edit-skill">Edit</button>
+          <button class="btn btn-sm btn-danger ms-2 delete-skill">Delete</button>
+        </li>
+      `).hide();
+      $("#skillList").append(listItem);
+      listItem.fadeIn(500);
     });
+  }
 
-    tbody.appendChild(row);
+  function addSkill(newSkill) {
+    newSkill = newSkill.trim();
+    if (newSkill === "" || skills.includes(newSkill)) return;
+    skills.push(newSkill);
+    renderSkills();
+  }
+
+  function deleteSkill(index) {
+    $(`#skillList li[data-index="${index}"]`).slideUp(300, function () {
+      skills.splice(index, 1);
+      renderSkills();
+    });
+  }
+
+  function editSkill(index) {
+    const currentSkill = skills[index];
+    const newName = prompt("Edit Skill:", currentSkill);
+    if (newName !== null) {
+      const trimmed = newName.trim();
+      if (trimmed !== "") {
+        skills[index] = trimmed;
+        renderSkills();
+      }
+    }
+  }
+
+  $("#addSkillButton").click(function () {
+    const skill = $("#skillInput").val();
+    addSkill(skill);
+    $("#skillInput").val("");
   });
 
-  table.appendChild(tbody);
-  container.appendChild(table);
-}
+  $("#skillInput").keydown(function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      $("#addSkillButton").click();
+    } else if (e.key === "Escape") {
+      $(this).val("");
+    }
+  });
 
-// Create the Education table
-createTable("educationTableContainer", educationData, [
-  "Degree",
-  "Institution",
-  "Start",
-  "End",
-]);
+  $("#skillList").on("click", ".delete-skill", function () {
+    const index = $(this).closest("li").data("index");
+    deleteSkill(index);
+  });
 
-// Create the Experience table
-createTable("experienceTableContainer", experienceData, [
-  "Role",
-  "Company",
-  "Start",
-  "End",
-]);
+  $("#skillList").on("click", ".edit-skill", function () {
+    const index = $(this).closest("li").data("index");
+    editSkill(index);
+  });
+
+  // Dynamic Navigation
+  const navItems = [
+    { label: "Introduction", target: "#summary" },
+    { label: "Education", target: "#education" },
+    { label: "Skills", target: "#skills" },
+    { label: "Projects", target: "#projects" },
+  ];
+
+  function renderNav() {
+    $("#dynamicNav").empty();
+    navItems.forEach((item) => {
+      const navItem = $(`
+        <li class="nav-item">
+          <a class="nav-link" href="${item.target}">${item.label}</a>
+        </li>
+      `);
+      $("#dynamicNav").append(navItem);
+    });
+  }
+
+  $("#dynamicNav").on("click", ".nav-link", function (e) {
+    e.preventDefault();
+    const targetSection = $(this).attr("href");
+    $("html, body").animate(
+      { scrollTop: $(targetSection).offset().top - 70 },
+      600
+    );
+  });
+
+  renderNav();
+
+  // Projects Section
+  let projects = [
+    {
+      title: "TextBasedRPG",
+      description: "A console-based RPG featuring towns, inventory management, and more.",
+      deadline: new Date("2025-12-31"),
+      imageURL: "./Screenshot 2025-01-27 202906.png"
+    },
+    {
+      title: "Sorting Algorithm Visualizer",
+      description: "Visual comparison of different sorting algorithms, built with Python & Pygame.",
+      deadline: new Date("2025-06-30"),
+      imageURL: "./Screenshot 2025-01-27 203033.png"
+    },
+    {
+      title: "Vector Average/Sum",
+      description: "Project in C for summing and averaging vectors (showcasing atan2).",
+      deadline: new Date("2024-01-15"),
+      imageURL: "./Screenshot 2025-01-27 203402.png"
+    }
+  ];
+
+  function renderProjects() {
+    $("#projectsContainer").empty();
+    const now = new Date();
+
+    projects.forEach((project) => {
+      // If the deadline is after "now," it's Ongoing; otherwise, Completed
+      const dynamicStatus =
+        project.deadline.getTime() > now.getTime() ? "Ongoing" : "Completed";
+
+      const card = $(`
+        <div class="col">
+          <div class="card custom-card h-100">
+            <img src="${project.imageURL}" class="card-img-top" alt="${project.title}" />
+            <div class="card-body">
+              <h5 class="card-title">${project.title}</h5>
+              <p class="card-text">${project.description}</p>
+              <p class="card-text">Status: ${dynamicStatus}</p>
+              <p class="card-text">
+                <small>Deadline: ${project.deadline.toLocaleDateString()}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      `).hide();
+      $("#projectsContainer").append(card);
+      card.fadeIn(500);
+    });
+  }
+
+  $("#sortProjects").click(function () {
+    projects.sort((a, b) => a.deadline - b.deadline);
+    renderProjects();
+  });
+
+  renderProjects();
+
+  // Dynamic Tables
+  let educationData = [
+    {
+      degree: "Software Engineering Major",
+      institution: "Northern Arizona University",
+      start: "2023",
+      end: "2027"
+    }
+  ];
+
+  function renderEducationTable() {
+    let table = $('<table class="custom-table"></table>');
+    let thead = $(`
+      <thead>
+        <tr>
+          <th>Degree</th>
+          <th>Institution</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+    `);
+    let tbody = $("<tbody></tbody>");
+    educationData.forEach((edu) => {
+      let row = $("<tr></tr>");
+      row.append(`<td>${edu.degree}</td>`);
+      row.append(`<td>${edu.institution}</td>`);
+      row.append(`<td>${edu.start}</td>`);
+      row.append(`<td>${edu.end}</td>`);
+      tbody.append(row);
+    });
+    table.append(thead).append(tbody);
+    $("#educationTableContainer").html(table);
+  }
+
+  let experienceData = [
+    {
+      role: "Restaurant Service",
+      company: "Various Employers",
+      start: "2020",
+      end: "2022"
+    },
+    {
+      role: "Metal Band Frontman",
+      company: "Local Gigs",
+      start: "2019",
+      end: "Present"
+    }
+  ];
+
+  function renderExperienceTable() {
+    let table = $('<table class="custom-table"></table>');
+    let thead = $(`
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Company</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+    `);
+    let tbody = $("<tbody></tbody>");
+    experienceData.forEach((exp) => {
+      let row = $("<tr></tr>");
+      row.append(`<td>${exp.role}</td>`);
+      row.append(`<td>${exp.company}</td>`);
+      row.append(`<td>${exp.start}</td>`);
+      row.append(`<td>${exp.end}</td>`);
+      tbody.append(row);
+    });
+    table.append(thead).append(tbody);
+    $("#experienceTableContainer").html(table);
+  }
+
+  renderEducationTable();
+  renderExperienceTable();
+});
